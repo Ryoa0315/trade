@@ -15,10 +15,9 @@ return new class extends Migration
     {
         Schema::create('titles', function (Blueprint $table) {
             $table->id();
-            $table->string('Name', 50);
-            $table->string('Profile', 200);
-            $table->string('Email', 50)->nullable();
-            $table->string('Image', 50)->nullable();
+            $table->string('name', 50);
+            $table->string('profile', 200);
+            $table->string('image', 50)->nullable();
             $table->timestamps();
         });
     }

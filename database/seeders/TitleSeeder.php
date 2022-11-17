@@ -16,8 +16,8 @@ class TitleSeeder extends Seeder
     public function run()
     {
         DB::table('titles')->insert([
-            'Name' => 'それいけアンパンマン',
-            'Profile' => '子供向けアニメ',
+            'name' => 'それいけアンパンマン',
+            'profile' => '子供向けアニメ',
         ]);
     }
 }

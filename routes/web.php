@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MerchandiseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [MerchandiseController::class, 'index']);
+Route::get('/merchandises/create', [MerchandiseController::class, 'create']);
+Route::get('/merchandises/{merchandise}', [MerchandiseController::class , 'show']);
+Route::post('/merchandises',[MerchandiseController::class, 'store']);
+Route::delete('/merchandises/{merchandise}', [MerchandiseController::class, 'delete']);
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+require __DIR__.'/auth.php';
