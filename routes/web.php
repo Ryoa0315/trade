@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MerchandiseController;
+use App\Http\Controllers\RepliesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,7 @@ Route::get('/merchandises/create', [MerchandiseController::class, 'create']);
 Route::get('/merchandises/{merchandise}', [MerchandiseController::class , 'show']);
 Route::post('/merchandises',[MerchandiseController::class, 'store']);
 Route::delete('/merchandises/{merchandise}', [MerchandiseController::class, 'delete']);
+Route::post('/replies/{merchandise}', [RepliesController::class, 'store']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

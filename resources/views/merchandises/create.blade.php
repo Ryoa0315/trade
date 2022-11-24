@@ -26,7 +26,7 @@
                 <h2>商品の説明</h2>
                 <textarea name="merchandise[body]" placeholder="今日も1日お疲れさまでした。"></textarea>
             </div>
-            <input type="file" name="image">
+            <input type="file" multiple name="image[]"/>
             <input type="submit" value="出品"/>
         </form>
         <div class="footer">

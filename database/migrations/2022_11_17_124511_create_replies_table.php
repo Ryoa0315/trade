@@ -15,17 +15,16 @@ return new class extends Migration
     {
         Schema::create('replies', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id', 50);
-            $table->string('merchandise_id', 50);
-            $table->timestamps();
             $table->string('body', 200);
-            $table->string('image_url1', 50)->nullable();
-            $table->string('image_url2', 50)->nullable();
-            $table->string('image_url3', 50)->nullable();
-            $table->string('image_url4', 50)->nullable();
-            $table->string('image_url5', 50)->nullable();
-            $table->string('image_url6', 50)->nullable();
-
+            $table->string('image_url1', 300)->nullable();
+            $table->string('image_url2', 300)->nullable();
+            $table->string('image_url3', 300)->nullable();
+            $table->string('image_url4', 300)->nullable();
+            $table->string('image_url5', 300)->nullable();
+            $table->string('image_url6', 300)->nullable();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('merchandise_id')->constrained();
+            $table->timestamps();
         });
     }
 

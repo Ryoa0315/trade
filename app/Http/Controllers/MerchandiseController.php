@@ -17,7 +17,7 @@ class Merchandisecontroller extends Controller
     
     public function show(Merchandise $merchandise)
     {
-        return view('merchandises/show')->with(['merchandises' => $merchandise]);
+        return view('merchandises/show')->with(['merchandises' => $merchandise, 'replies' => $merchandise->replies]);
     }
     
     public function create(Title $title)
@@ -27,10 +27,15 @@ class Merchandisecontroller extends Controller
     
     public function store(Request $request, Merchandise $merchandise)
     {
+        $images = $request->file('image');
         $input = $request['merchandise'];
         $merchandise->fill($input);
-        $merchandise['image_url1'] = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
         $merchandise['user_id'] = Auth::id();
+        if($images != null){
+            for($i=0; $i<count($images) || $i<6; $i++){
+                $merchandise['image_url'.($i+1)] = Cloudinary::upload($images[$i]->getRealPath())->getSecurePath();
+            }
+        }
         $merchandise->save();
         return redirect('/merchandises/' . $merchandise->id);
     }
