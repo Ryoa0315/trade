@@ -17,6 +17,21 @@
                 <p>{{ $merchandises->body }}</p>    
             </div>
         </div>
+        <div class="replies">
+            @foreach ($replies as $reply)
+            <div class='replies'>
+            <p>{{ $reply->body}}</p>
+            </div>
+            @endforeach
+        </div>
+        <form action="/replies/{{ $merchandises->id }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="body">
+                <h3>返信</h3>
+                <textarea name="reply[body]" placeholder="今日も1日お疲れさまでした。"></textarea>
+            </div>
+            <input type="submit" value="返信"/>
+        </form>
         <div class="footer">
             <a href="/">戻る</a>
         </div>

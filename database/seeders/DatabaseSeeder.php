@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             TitleSeeder::class,
             MerchandiseSeeder::class,
+            ReplySeeder::class,
+            MessageSeeder::class,
         ]);
     }
 }

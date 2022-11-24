@@ -21,10 +21,10 @@ return new class extends Migration
             $table->boolean('sold')->default(false);
             $table->string('image_url1', 300)->nullable();
             $table->string('image_url2', 300)->nullable();
-            $table->string('image_url3', 50)->nullable();
-            $table->string('image_url4', 50)->nullable();
-            $table->string('image_url5', 50)->nullable();
-            $table->string('image_url6', 50)->nullable();
+            $table->string('image_url3', 300)->nullable();
+            $table->string('image_url4', 300)->nullable();
+            $table->string('image_url5', 300)->nullable();
+            $table->string('image_url6', 300)->nullable();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('title_id')->constrained();
             $table->timestamps();
