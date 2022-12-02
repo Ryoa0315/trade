@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Message;
 
 class User extends Authenticatable
 {
@@ -41,4 +42,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function toMessages()
+    {
+        return $this->hasMany(Message::class, 'to');
+    }
+    
+    public function fromMessages()
+    {
+        return $this->hasMany(Message::class, 'from');
+    }
 }

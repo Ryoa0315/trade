@@ -17,8 +17,39 @@ class MessageSeeder extends Seeder
     public function run()
     {
         DB::table('messages')->insert([
-            'body' => 'よろしくお願いします',
-            'user_id' => 1,
-            ]);
+            'to' => 1,
+            'from' => 2,
+            'body' => '1 -> 2',
+        ]);
+            
+        DB::table('messages')->insert([
+            'to' => 1,
+            'from' => 3,
+            'body' => '1 -> 3',
+        ]);
+            
+        DB::table('messages')->insert([
+            'to' => 2,
+            'from' => 1,
+            'body' => '2 -> 1',
+        ]);
+            
+        DB::table('messages')->insert([
+            'to' => 2,
+            'from' => 3,
+            'body' => '2 -> 3',
+        ]);
+            
+        DB::table('messages')->insert([
+            'to' => 3,
+            'from' => 1,
+            'body' => '3 -> 1',
+        ]);
+            
+        DB::table('messages')->insert([
+            'to' => 3,
+            'from' => 2,
+            'body' => '3 -> 2',
+        ]);
     }
 }

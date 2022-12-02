@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('to')->comment("送信先user_id");
+            $table->unsignedBigInteger('from')->comment("送信元user_id");
             $table->string('body', 200);
             $table->string('image_url1', 300)->nullable();
             $table->string('image_url2', 300)->nullable();
@@ -22,7 +24,8 @@ return new class extends Migration
             $table->string('image_url4', 300)->nullable();
             $table->string('image_url5', 300)->nullable();
             $table->string('image_url6', 300)->nullable();
-            $table->foreignId('user_id')->constrained()->comment('to');
+            $table->foreign('to')->references('id')->on('users');
+            $table->foreign('from')->references('id')->on('users');
             $table->timestamps();
         });    
     }
