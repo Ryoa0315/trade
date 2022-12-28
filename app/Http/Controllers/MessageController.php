@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Message;
 use App\Models\User;
+use App\Models\Chatroom;
 use Cloudinary;
 
 
@@ -14,23 +15,19 @@ class MessageController extends Controller
 {
     public function index(Message $message)
     {
-        $tomessages = Auth::user()->toMessages;
-        $frommessages = Auth::user()->fromMessages;
-        $messages = collect($tomessages)->merge($frommessages)->sortByDesc('create_at');
-        return view('messages/index')->with(['messages' => $messages]);
+        //自分の所属チャットルーム表示
+        $chatrooms = Chatroom::where('user1', Auth::id())->orWhere('user2', Auth::id())->get();
+        return view('messages/index')->with(['chatrooms' => $chatrooms]);
     }
     
-    public function show(User $me, User $you)
+    public function show(Chatroom $chatroom, Message $message)
     {
-        $messages = Message::where(function ($query) use ($me, $you) {
-            $query->where('from', $me->id)->Where('to', $you->id);
-        })->orwhere(function ($query) use ($me, $you) {
-            $query->where('to', $me->id)->Where('from', $you->id);
-        })->get();
-        return view('messages/chatroom')->with(['messages' => $messages, 'me'=>$me, 'you'=>$you]);
+        //メッセージ表示
+        $messages = Message::where('chatroom_id', $chatroom->id)->get();
+        return view('messages/chatroom')->with(['chatroom' => $chatroom, 'messages' => $messages, 'user1'=>$chatroom->user_1, 'user2'=>$chatroom->user_2]);
     }
     
-    public function store(Request $request, Message $message)
+    public function store(Request $request,Chatroom $chatroom, Message $message)
     {
         $images = $request->file('image');
         $input = $request['message'];

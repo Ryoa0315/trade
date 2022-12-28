@@ -21,11 +21,12 @@ Route::get('/merchandises/create', [MerchandiseController::class, 'create']);
 Route::get('/merchandises/{merchandise}', [MerchandiseController::class , 'show']);
 Route::post('/merchandises',[MerchandiseController::class, 'store']);
 Route::delete('/merchandises/{merchandise}', [MerchandiseController::class, 'delete']);
+Route::put('/merchandises/{merchandise}/{reply}', [MerchandiseController::class, 'startTransaction']);
 Route::post('/replies/{merchandise}', [RepliesController::class, 'store']);
 
-Route::get('/messages', [MessageController::class, 'index']);
-Route::get('/messages/{me}/{you}', [MessageController::class, 'show']);
-Route::post('/messages/{me}/{you}', [MessageController::class, 'store']);
+Route::get('/messages', [MessageController::class, 'index']); //chatroom一覧
+Route::get('/messages/{chatroom}', [MessageController::class, 'show']); //DM
+Route::post('/messages/{chatroom}', [MessageController::class, 'store']); //DM保存処理
 
 
 Route::get('/dashboard', function () {

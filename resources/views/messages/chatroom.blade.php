@@ -12,7 +12,7 @@
             <p>{{ $message->body}}</p>
             </div>
             @endforeach
-    <form action="/messages/{{$me->id}}/{{$you->id}}" method="POST" enctype="multipart/form-data">
+    <form action="/messages/{{ $chatroom->id}}" method="POST" enctype="multipart/form-data">
             @csrf
             <input class= type="text" name="body" placeholder="Input message." >
             <input type="file" multiple name="image[]"/>

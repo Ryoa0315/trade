@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             MerchandiseSeeder::class,
             ReplySeeder::class,
             MessageSeeder::class,
+            ChatroomSeeder::class,
         ]);
     }
 }

@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('image_url6', 300)->nullable();
             $table->foreign('to')->references('id')->on('users');
             $table->foreign('from')->references('id')->on('users');
+            $table->foreignId('chatroom_id')->constrained;
             $table->timestamps();
         });    
     }
