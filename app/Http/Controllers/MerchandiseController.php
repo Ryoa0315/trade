@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Merchandise;
 use App\Models\Title;
+use App\Models\Chatroom;
+use App\Models\Reply;
 use Cloudinary;
 
 class Merchandisecontroller extends Controller
@@ -17,7 +19,7 @@ class Merchandisecontroller extends Controller
     
     public function show(Merchandise $merchandise)
     {
-        return view('merchandises/show')->with(['merchandises' => $merchandise, 'replies' => $merchandise->replies]);
+        return view('merchandises/show')->with(['merchandise' => $merchandise, 'replies' => $merchandise->replies]);
     }
     
     public function create(Title $title)
@@ -44,5 +46,17 @@ class Merchandisecontroller extends Controller
     {
         $merchandise->delete();
         return redirect('/');
+    }
+    
+    public function startTransaction(Merchandise $merchandise, Reply $reply, Chatroom $chatroom)
+    {
+        $merchandise->sold = true;
+        $merchandise->save();
+        
+        $chatroom->user1 = Auth::id();
+        $chatroom->user2 = $reply->user_id;
+        $chatroom->merchandise_id = $merchandise->id;
+        $chatroom->save();
+        return redirect('/messages/'.$chatroom->id);
     }
 }

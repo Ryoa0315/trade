@@ -18,9 +18,25 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             'name' => '帆士',
-            'password' => 'aiueo',
+            'Password' => 'aiueoaiueo',
             'Profile' => '大学三年生',
-            'email' => '1',
+            'email' => 'a@a',
+            'image' => '1',
+        ]);
+        
+        DB::table('users')->insert([
+            'name' => 'bさん',
+            'Password' => 'aiueoaiueo',
+            'Profile' => '大学三年生',
+            'email' => 'b@b',
+            'image' => '1',
+        ]);
+        
+        DB::table('users')->insert([
+            'name' => 'cさん',
+            'Password' => 'aiueoaiueo',
+            'Profile' => '大学三年生',
+            'email' => 'c@c',
             'image' => '1',
         ]);
     }

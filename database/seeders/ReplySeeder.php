@@ -18,8 +18,10 @@ class ReplySeeder extends Seeder
     {
         DB::table('replies')->insert([
             'body' => '交換可能でしょうか',
-            'user_id' => 1,
-            'Merchandise_id' => 1,
-            ]);
+            'user_id' => 2,
+            'merchandise_id' => 2,
+        ]);
+        
+        
     }
 }
